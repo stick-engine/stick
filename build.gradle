@@ -1,0 +1,22 @@
+subprojects {
+    group 'org.stick'
+    version '0.0.1-ALPHA'
+
+    apply plugin: 'java'
+
+    // Java 8 is life
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // Logging
+        compile 'org.slf4j:slf4j-api:1.7.25'
+        compile 'org.apache.logging.log4j:log4j-core:2.8.2'
+        compile 'org.apache.logging.log4j:log4j-api:2.8.2'
+        compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.8.2'
+    }
+}

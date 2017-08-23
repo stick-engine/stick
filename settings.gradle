@@ -1,0 +1,2 @@
+rootProject.name = 'stick'
+include 'stick-library', 'stick-server', 'stick-minecraft'

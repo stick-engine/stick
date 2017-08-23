@@ -1,0 +1,6 @@
+dependencies {
+    compile 'com.moandjiezana.toml:toml4j:0.7.2'
+    compile 'commons-io:commons-io:2.5'
+
+    compile project(':stick-library')
+}

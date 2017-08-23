@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" name="StickServer">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%-5level] [%logger{36}] %msg%n"/>
+        </Console>
+
+        <RollingFile name="Logs" fileName="logs/stick_latest.log" filePattern="logs/stick_%d{yyyy-MM-dd}_%i.log.gz">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%-5level] [%logger{36}] %msg%n"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100KB" />
+            </Policies>
+        </RollingFile>
+        <Async name="AsyncLogs">
+            <AppenderRef ref="Logs"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="AsyncLogs"/>
+        </Root>
+    </Loggers>
+</Configuration>

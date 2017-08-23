@@ -1,0 +1,6 @@
+dependencies {
+    compile 'org.apache.commons:commons-lang3:3.6'
+    compile 'com.google.guava:guava:23.0'
+    compile 'net.sf.trove4j:trove4j:3.0.3'
+    compile 'com.google.code.gson:gson:2.8.1'
+}

@@ -1,0 +1,3 @@
+# Stick default players config
+maxPlayers = 15
+whitelistEnabled = false
