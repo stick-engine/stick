@@ -4,10 +4,10 @@ import org.stick.library.network.ConnectionState;
 import org.stick.library.network.NetworkConnection;
 import org.stick.library.network.Side;
 import org.stick.library.network.packet.handling.Handle;
-import org.stick.library.network.packet.serlializing.AutoSerializing;
+import org.stick.library.network.packet.serializing.AutoSerializing;
 import org.stick.library.network.packet.Packet;
-import org.stick.library.network.packet.serlializing.types.UnsignedShort;
-import org.stick.library.network.packet.serlializing.types.VarNum;
+import org.stick.library.network.packet.serializing.types.UnsignedShort;
+import org.stick.library.network.packet.serializing.types.VarNum;
 
 @Packet(id = 0x00, state = ConnectionState.HANDSHAKING, bound = Side.SERVER)
 @AutoSerializing({"protocolVersion", "serverAddress", "serverPort", "nextState"})

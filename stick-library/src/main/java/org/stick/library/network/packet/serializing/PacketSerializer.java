@@ -1,4 +1,4 @@
-package org.stick.library.network.packet.serlializing;
+package org.stick.library.network.packet.serializing;
 
 import java.io.IOException;
 import org.stick.library.util.io.StreamReader;

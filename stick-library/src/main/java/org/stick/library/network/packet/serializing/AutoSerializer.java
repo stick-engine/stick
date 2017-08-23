@@ -1,17 +1,16 @@
-package org.stick.library.network.packet.serlializing;
+package org.stick.library.network.packet.serializing;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.stick.library.UnsignedByte;
-import org.stick.library.network.packet.serlializing.types.UnsignedShort;
-import org.stick.library.network.packet.serlializing.types.VarNum;
+import org.stick.library.network.packet.serializing.types.UnsignedByte;
+import org.stick.library.network.packet.serializing.types.UnsignedShort;
+import org.stick.library.network.packet.serializing.types.VarNum;
 import org.stick.library.util.io.StreamReader;
 import org.stick.library.util.io.StreamWriter;
 

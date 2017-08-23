@@ -1,7 +1,7 @@
 package org.stick.library.network.packet;
 
 import org.stick.library.network.packet.handling.PacketHandler;
-import org.stick.library.network.packet.serlializing.PacketSerializer;
+import org.stick.library.network.packet.serializing.PacketSerializer;
 
 public class PacketContainer<P>
 {

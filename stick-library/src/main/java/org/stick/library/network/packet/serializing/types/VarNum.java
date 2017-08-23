@@ -1,4 +1,4 @@
-package org.stick.library.network.packet.serlializing.types;
+package org.stick.library.network.packet.serializing.types;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

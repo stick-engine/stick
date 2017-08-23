@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.stick.library.network.ConnectionState;
 import org.stick.library.network.Side;
 import org.stick.library.network.packet.Packet;
-import org.stick.library.network.packet.serlializing.Serializer;
+import org.stick.library.network.packet.serializing.Serializer;
 import org.stick.library.util.io.StreamWriter;
 
 @Packet(id = 0x00, state = ConnectionState.STATUS, bound = Side.CLIENT)

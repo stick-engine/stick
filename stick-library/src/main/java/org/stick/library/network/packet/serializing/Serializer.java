@@ -1,4 +1,4 @@
-package org.stick.library.network.packet.serlializing.types;
+package org.stick.library.network.packet.serializing;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface UnsignedByte
+@Target(ElementType.METHOD)
+public @interface Serializer
 {
 }

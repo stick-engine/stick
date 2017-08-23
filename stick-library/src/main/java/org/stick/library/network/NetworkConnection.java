@@ -10,7 +10,7 @@ import org.stick.library.network.packet.Packet;
 import org.stick.library.network.packet.PacketContainer;
 import org.stick.library.network.packet.PacketRegistry;
 import org.stick.library.network.packet.handling.PacketHandler;
-import org.stick.library.network.packet.serlializing.PacketSerializer;
+import org.stick.library.network.packet.serializing.PacketSerializer;
 import org.stick.library.util.io.StreamReader;
 import org.stick.library.util.io.StreamWriter;
 
