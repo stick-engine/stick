@@ -5,11 +5,15 @@ import org.stick.library.network.Side;
 import org.stick.library.network.packet.Packet;
 import org.stick.library.network.packet.serializing.AutoSerializing;
 
-@Packet(id = 0x01, state = ConnectionState.STATUS, bound = Side.CLIENT)
 @AutoSerializing({"payload"})
+@Packet(id = 0x01, state = ConnectionState.STATUS, bound = Side.CLIENT)
 public class PongPacket
 {
     private long payload;
+
+    public PongPacket()
+    {
+    }
 
     public PongPacket(long payload)
     {

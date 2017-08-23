@@ -6,10 +6,11 @@ import java.net.Socket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.stick.library.Stick;
+import org.stick.library.network.packet.NoHandler;
 import org.stick.library.network.packet.Packet;
 import org.stick.library.network.packet.PacketContainer;
 import org.stick.library.network.packet.PacketRegistry;
-import org.stick.library.network.packet.handling.PacketHandler;
+import org.stick.library.network.packet.PacketHandler;
 import org.stick.library.network.packet.serializing.PacketSerializer;
 import org.stick.library.util.io.StreamReader;
 import org.stick.library.util.io.StreamWriter;
@@ -82,7 +83,17 @@ public class NetworkConnection
         }
 
         container.getSerializer().read(packet, new StreamReader(content));
-        container.getHandler().handle(packet, this);
+
+        if (container.getHandler() == null && ! packetClass.isAnnotationPresent(NoHandler.class))
+        {
+            log.warn("No handler was defined for packet " + packetClass.getName());
+            log.warn("This is probably a development error, if it isn't, please put a @NoHandler annotation on the packet class");
+            log.warn("Packet will be ignored");
+        }
+        else
+        {
+            container.getHandler().handle(packet, this);
+        }
     }
 
     public <P> void sendPacket(P object)
@@ -92,6 +103,11 @@ public class NetworkConnection
 
         Packet packet = packetRegistry.getPacketInfos(packetClass);
         PacketContainer<P> container = packetRegistry.getPacketContainer(packetClass);
+
+        if (packet == null)
+        {
+            throw new IllegalArgumentException("Can't send an unregistered packet (" + packetClass.getName() + ")");
+        }
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try
@@ -115,7 +131,6 @@ public class NetworkConnection
 
             return;
         }
-
 
         byte[] data = out.toByteArray();
         int length = data.length;

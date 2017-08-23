@@ -1,4 +1,4 @@
-package org.stick.library.network.packet.handling;
+package org.stick.library.network.packet;
 
 import org.stick.library.network.NetworkConnection;
 

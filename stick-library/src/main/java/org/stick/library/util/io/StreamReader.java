@@ -1,14 +1,19 @@
 package org.stick.library.util.io;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.ByteArrayInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import org.stick.library.chat.ChatMessage;
 
 public class StreamReader
 {
+    private static final Gson gson = new GsonBuilder().create();
+
     private InputStream in;
     private int readAmount = 0;
 
@@ -128,6 +133,11 @@ public class StreamReader
         while ((read & 0b10000000) != 0);
 
         return result;
+    }
+
+    public ChatMessage readChatMessage() throws IOException
+    {
+        return gson.fromJson(readString(), ChatMessage.class);
     }
 
     // TODO: Other types to read

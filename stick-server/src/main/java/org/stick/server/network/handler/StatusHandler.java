@@ -2,7 +2,9 @@ package org.stick.server.network.handler;
 
 import org.stick.library.network.NetworkConnection;
 import org.stick.library.network.packet.PacketRegistry;
+import org.stick.library.network.packets.status.client.PongPacket;
 import org.stick.library.network.packets.status.client.ResponsePacket;
+import org.stick.library.network.packets.status.server.PingPacket;
 import org.stick.library.network.packets.status.server.RequestPacket;
 import org.stick.server.StickServer;
 
@@ -18,10 +20,16 @@ public class StatusHandler
 
         // Registering handlers
         registry.handle(RequestPacket.class, this::handleRequest);
+        registry.handle(PingPacket.class, this::handlePing);
     }
 
-    protected void handleRequest(RequestPacket packet, NetworkConnection connection)
+    public void handleRequest(RequestPacket packet, NetworkConnection connection)
     {
         connection.sendPacket(new ResponsePacket(server.generateServerInfos()));
+    }
+
+    public void handlePing(PingPacket packet, NetworkConnection connection)
+    {
+        connection.sendPacket(new PongPacket(packet.getPayload()));
     }
 }

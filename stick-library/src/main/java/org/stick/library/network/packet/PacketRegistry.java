@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.stick.library.network.ConnectionState;
 import org.stick.library.network.Side;
-import org.stick.library.network.packet.handling.PacketHandler;
-import org.stick.library.network.packet.handling.ReflectionHandler;
 import org.stick.library.network.packet.serializing.AutoSerializer;
 import org.stick.library.network.packet.serializing.AutoSerializing;
 import org.stick.library.network.packet.serializing.ReflectionSerializer;
@@ -54,7 +52,6 @@ public class PacketRegistry
             return;
         }
 
-        handle(packet, new ReflectionHandler<>(packet));
         getPacketContainer(packet).setSerializer(packet.isAnnotationPresent(AutoSerializing.class) ?
                                                  new AutoSerializer<>(packet) : new ReflectionSerializer<>(packet));
 

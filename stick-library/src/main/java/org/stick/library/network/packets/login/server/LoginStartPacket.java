@@ -5,11 +5,20 @@ import org.stick.library.network.Side;
 import org.stick.library.network.packet.Packet;
 import org.stick.library.network.packet.serializing.AutoSerializing;
 
-@Packet(id = 0x00, state = ConnectionState.LOGIN, bound = Side.SERVER)
 @AutoSerializing({"username"})
+@Packet(id = 0x00, state = ConnectionState.LOGIN, bound = Side.SERVER)
 public class LoginStartPacket
 {
     private String username;
+
+    public LoginStartPacket()
+    {
+    }
+
+    public LoginStartPacket(String username)
+    {
+        this.username = username;
+    }
 
     public String getUsername()
     {

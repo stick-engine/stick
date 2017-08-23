@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.stick.library.PlayerInfos;
 import org.stick.library.Stick;
 import org.stick.library.network.NetworkConnection;
 
@@ -17,11 +18,12 @@ public class Client extends Thread implements Closeable
     private Socket socket;
     private NetworkConnection connection;
 
-    private String username;
+    private PlayerInfos playerInfos;
 
     public Client(Socket socket)
     {
         this.socket = socket;
+        this.playerInfos = new PlayerInfos();
     }
 
     @Override
@@ -88,14 +90,9 @@ public class Client extends Thread implements Closeable
         }
     }
 
-    public void setUsername(String username)
+    public PlayerInfos getPlayerInfos()
     {
-        this.username = username;
-    }
-
-    public String getUsername()
-    {
-        return username;
+        return playerInfos;
     }
 
     @Override

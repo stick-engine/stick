@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.stick.library.chat.ChatMessage;
 import org.stick.library.network.packet.serializing.types.UnsignedByte;
 import org.stick.library.network.packet.serializing.types.UnsignedShort;
 import org.stick.library.network.packet.serializing.types.VarNum;
@@ -117,6 +118,9 @@ public class AutoSerializer<P> implements PacketSerializer<P>
                     case VAR_LONG:
                         field.set(packet, in.readVarLong());
                         break;
+                    case CHAT_MESSAGE:
+                        field.set(packet, in.readChatMessage());
+                        break;
                 }
             }
             catch (IllegalAccessException e)
@@ -178,6 +182,9 @@ public class AutoSerializer<P> implements PacketSerializer<P>
                     case VAR_LONG:
                         out.writeVarLong((long) field.get(packet));
                         break;
+                    case CHAT_MESSAGE:
+                        out.writeChatMessage((ChatMessage) field.get(packet));
+                        break;
                 }
             }
             catch (IllegalAccessException e)
@@ -202,7 +209,8 @@ public class AutoSerializer<P> implements PacketSerializer<P>
         DOUBLE(double.class),
         STRING(String.class),
         VAR_INT(int.class, VarNum.class),
-        VAR_LONG(long.class, VarNum.class);
+        VAR_LONG(long.class, VarNum.class),
+        CHAT_MESSAGE(ChatMessage.class);
 
         private Class type;
         private Class<? extends Annotation> annotation;

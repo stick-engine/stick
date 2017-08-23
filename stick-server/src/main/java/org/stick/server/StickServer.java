@@ -13,6 +13,7 @@ import org.stick.library.network.ConnectionState;
 import org.stick.library.network.NetworkConnection;
 import org.stick.server.config.Config;
 import org.stick.server.network.Client;
+import org.stick.server.network.handler.HandshakingHandler;
 import org.stick.server.network.handler.LoginHandler;
 import org.stick.server.network.handler.StatusHandler;
 
@@ -34,6 +35,7 @@ public class StickServer
     private List<Client> clients;
 
     // Handlers
+    private HandshakingHandler handshakingHandler;
     private StatusHandler statusHandler;
     private LoginHandler loginHandler;
 
@@ -63,8 +65,12 @@ public class StickServer
         stick.start();
 
         log.info("Loading Stick server...");
+
+        // Loading handlers
+        handshakingHandler = new HandshakingHandler(stick.getPacketRegistry());
         statusHandler = new StatusHandler(this, stick.getPacketRegistry());
         loginHandler = new LoginHandler(this, stick.getPacketRegistry());
+
 
         log.info("Creating server...");
 
@@ -168,6 +174,21 @@ public class StickServer
             {
             }
         }
+    }
+
+    public HandshakingHandler getHandshakingHandler()
+    {
+        return handshakingHandler;
+    }
+
+    public StatusHandler getStatusHandler()
+    {
+        return statusHandler;
+    }
+
+    public LoginHandler getLoginHandler()
+    {
+        return loginHandler;
     }
 
     public List<Client> getClients()

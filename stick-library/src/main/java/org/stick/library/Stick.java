@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.stick.library.network.ConnectionState;
 import org.stick.library.network.packet.PacketRegistry;
 import org.stick.library.network.packets.handshaking.server.HandshakePacket;
+import org.stick.library.network.packets.login.client.LoginDisconnectPacket;
+import org.stick.library.network.packets.login.client.LoginSuccessPacket;
 import org.stick.library.network.packets.login.server.LoginStartPacket;
 import org.stick.library.network.packets.status.client.PongPacket;
 import org.stick.library.network.packets.status.client.ResponsePacket;
@@ -43,6 +45,8 @@ public class Stick
         packets.register(PingPacket.class);
         packets.register(PongPacket.class);
         packets.register(LoginStartPacket.class);
+        packets.register(LoginSuccessPacket.class);
+        packets.register(LoginDisconnectPacket.class);
     }
 
     public PacketRegistry getPacketRegistry()

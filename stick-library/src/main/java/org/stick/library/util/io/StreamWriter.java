@@ -1,11 +1,16 @@
 package org.stick.library.util.io;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import org.stick.library.chat.ChatMessage;
 
 public class StreamWriter
 {
+    private static final Gson gson = new GsonBuilder().create();
+
     private OutputStream out;
 
     public StreamWriter(OutputStream out)
@@ -100,6 +105,11 @@ public class StreamWriter
             writeByte(temp);
         }
         while (value != 0);
+    }
+
+    public void writeChatMessage(ChatMessage message) throws IOException
+    {
+        writeString(gson.toJson(message));
     }
 
     public void writeBytes(byte[] value) throws IOException
